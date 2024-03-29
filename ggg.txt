@@ -1,1 +1,7 @@
 link=mongodb+srv://adwaith553:dbrgtyuisdfgyh@cluster0.ulzcgsa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+{
+    "username":"adwai",
+    "password":"asdafa",
+    "firstName":"adwaaa",
+    "lastName":"aaaaaa"
+}
