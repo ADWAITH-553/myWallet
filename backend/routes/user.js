@@ -23,6 +23,9 @@ router.post("/signup",async (req,res)=>{
         return res.json({message:"email alredy exists/invalid inputs"})
     }
     const dbuser=await User.create(body);
+    const userId=dbuser._id
+
+    await Account.create({userId,balance: 1+Math.random()*1000})
     const token=jwt.sign({userId:dbuser._id},JWT_SECRET)
     res.json({
         message:"user created successfully",
