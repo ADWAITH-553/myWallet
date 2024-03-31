@@ -18,6 +18,15 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
     const session=await mongoose.startSession()
     session.startTransaction()
     const {amount,touser}=req.body
+
+    //from user and attaching the query userid to a session using session(session)
+    const account=await Account.findOne({userId:requserId}).session(session)
+    if(!account|| account.balance < amount){
+        await session.abortTransaction();
+        return res.status(400).json({
+            message:"insufficient balance"
+        })
+    }
 })
 
 
