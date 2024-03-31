@@ -6,9 +6,11 @@ const mongoose=require('mongoose')
 const router=express.Router()
 
 router.get("/balance",authMiddleware,async(req,res)=>{
+    console.log(req.userId)
     const account=await Account.findOne({
         userId:req.userId
     })
+
     res.json({
         balance:account.balance
     })
@@ -17,10 +19,10 @@ router.get("/balance",authMiddleware,async(req,res)=>{
 router.post("/transfer",authMiddleware,async(req,res)=>{
     const session=await mongoose.startSession()
     session.startTransaction()
-    const {amount,touser}=req.body
+    const {amount,to}=req.body
 
     //from user and attaching the query userid to a session using session(session)
-    const account=await Account.findOne({userId:requserId}).session(session)
+    const account=await Account.findOne({userId:req.userId}).session(session)
     if(!account|| account.balance < amount){
         await session.abortTransaction();
         return res.status(400).json({
@@ -44,7 +46,6 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
         message:"transfer succesful"
     })
 })
-
 
 
 

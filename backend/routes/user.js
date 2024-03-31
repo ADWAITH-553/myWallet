@@ -1,8 +1,8 @@
 const express=require('express')
 const zod=require('zod');
-const {User} = require('../db');
+const {User,Account} = require('../db');
 const jwt=require("jsonwebtoken")
-const JWT_SECRET = require('../config');
+const {JWT_SECRET} = require('../config');
 const router=express.Router();
 const {authMiddleware}=require("../middlwware")
 const signUpSchema=zod.object({
@@ -18,8 +18,9 @@ router.post("/signup",async (req,res)=>{
     if(!success){
         return res.json({message:"email alredy exists/invalid inputs"})
     }
-    const user=User.findOne({username:body.username})
-    if(user._id){
+    console.log(req.body)
+    const user=await User.findOne({username:body.username})
+    if(user){
         return res.json({message:"email alredy exists/invalid inputs"})
     }
     const dbuser=await User.create(body);

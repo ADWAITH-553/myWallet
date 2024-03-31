@@ -33,7 +33,7 @@ const accountSchema=mongoose.Schema({
     }
 })
 
-const user=mongoose.model("user",userSchema);
+const User=mongoose.model("User",userSchema);
 const Account=mongoose.model('Account',accountSchema);
 
-module.exports= user
+module.exports= {User,Account}
