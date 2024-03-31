@@ -4,7 +4,7 @@ const User = require('../db');
 const jwt=require("jsonwebtoken")
 const JWT_SECRET = require('../config');
 const router=express.Router();
-const authMiddleware=require("../middlwware")
+const {authMiddleware}=require("../middlwware")
 const signUpSchema=zod.object({
     username:zod.string(),
     password:zod.string(),
