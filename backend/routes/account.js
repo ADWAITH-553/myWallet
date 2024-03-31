@@ -27,6 +27,18 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
             message:"insufficient balance"
         })
     }
+    //to get reciever account
+    const toaccount =await Account.findOne({userId:to}).session(session)
+    if(!toaccount){
+        await session.abortTransaction();
+        return res.status(400).json({
+            message:"invalid acc"
+        })
+    }
+
+    //transfer
+    await Account.updateOne({userId:req.userId},{$inc:{balance:-amount}}).session(session)
+    await Account.updateOne({userId:to},{$inc:{balance:amount}}).session(session)
 })
 
 
