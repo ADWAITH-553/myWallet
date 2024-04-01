@@ -5,11 +5,13 @@ import { useState } from 'react';
 import Button from '../components/Button';
 import Warning from '../components/Warning';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 export default function Signup() {
      const [firstName, setFirstName] = useState("");
      const [lastName, setLastName] = useState("");
      const [username, setUsername] = useState("");
      const [password, setPassword] = useState("");
+     const navigate=useNavigate();
   return (
     <div className='bg-slate-200 h-screen flex justify-center'>
         <div className='flex flex-col justify-center'>
@@ -21,9 +23,12 @@ export default function Signup() {
                 <InputBox onChange={(e)=>{setUsername(e.target.value)}}label={"USERNAME"} placeholder={"aaa"}/>
                 <InputBox onChange={(e)=>{setPassword(e.target.value)}}label={"PASSWORD"} placeholder={"123456"}/>
                 <div className="pt-4">
-                <Button onClick={ async ()=>{await axios.post("http://localhost:3050/api/v1/user/signup",{
+                <Button onClick={ async ()=>{const response=await axios.post("http://localhost:3050/api/v1/user/signup",{
                     username,password,firstName,lastName
-                })}} label={"SIGN UP"}/>
+                })
+                localStorage.setItem("key",response.data.token)
+                navigate("/signin")
+                }} label={"SIGN UP"}/>
                 <Warning label={"already have an account"} buttonText={"Sign in"} to={"/signin"}/>
                 </div>
             </div>
