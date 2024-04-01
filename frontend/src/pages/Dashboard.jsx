@@ -6,7 +6,7 @@ import Users from '../components/Users'
 export default function Dashboard() {
   return (
     <>
-    <div>
+    <div className='h-screen bg-slate-200'>
         <Apppbar/>
         <div className='m-8'></div>
         <Balance value={1000}/>
