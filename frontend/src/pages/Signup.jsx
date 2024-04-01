@@ -4,6 +4,7 @@ import InputBox from '../components/InputBox'
 import { useState } from 'react';
 import Button from '../components/Button';
 import Warning from '../components/Warning';
+import axios from 'axios';
 export default function Signup() {
      const [firstName, setFirstName] = useState("");
      const [lastName, setLastName] = useState("");
@@ -20,7 +21,9 @@ export default function Signup() {
                 <InputBox onChange={(e)=>{setUsername(e.target.value)}}label={"USERNAME"} placeholder={"aaa"}/>
                 <InputBox onChange={(e)=>{setPassword(e.target.value)}}label={"PASSWORD"} placeholder={"123456"}/>
                 <div className="pt-4">
-                <Button onClick={(e)=>{console.log(firstName)}} label={"SIGN UP"}/>
+                <Button onClick={ async ()=>{await axios.post("http://localhost:3050/api/v1/user/signup",{
+                    username,password,firstName,lastName
+                })}} label={"SIGN UP"}/>
                 <Warning label={"already have an account"} buttonText={"Sign in"} to={"/signin"}/>
                 </div>
             </div>

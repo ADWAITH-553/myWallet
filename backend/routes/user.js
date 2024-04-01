@@ -16,7 +16,7 @@ router.post("/signup",async (req,res)=>{
     console.log("hii")
     const {success}=signUpSchema.safeParse(req.body);
     if(!success){
-        return res.json({message:"email alredy exists/invalid inputs"})
+        return res.json({message:"invalid inputs"})
     }
     console.log(req.body)
     const user=await User.findOne({username:body.username})
