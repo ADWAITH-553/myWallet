@@ -1,6 +1,7 @@
 import React from 'react'
 import Apppbar from '../components/Apppbar'
 import Balance from '../components/Balance'
+import Users from '../components/Users'
 
 export default function Dashboard() {
   return (
@@ -9,7 +10,7 @@ export default function Dashboard() {
         <Apppbar/>
         <div className='m-8'></div>
         <Balance value={1000}/>
-        <hr className='pt-7'/>
+        <Users/>
     </div>
     </>
   )
