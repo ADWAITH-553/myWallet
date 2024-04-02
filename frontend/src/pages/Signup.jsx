@@ -30,6 +30,7 @@ export default function Signup() {
                 navigate("/signin")
                 }} label={"SIGN UP"}/>
                 <Warning label={"already have an account"} buttonText={"Sign in"} to={"/signin"}/>
+               
                 </div>
             </div>
         </div>

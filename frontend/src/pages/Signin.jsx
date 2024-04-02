@@ -7,8 +7,11 @@ import { useState } from 'react';
 export default function Signin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    if(localStorage.getItem("key")==null)
+        return 0
     return (
    <>
+   
    <div className='bg-slate-200 h-screen flex justify-center'>
         <div className='flex flex-col justify-center'>
             <div className="rounded-lg text-center bg-white w-80 p-2 h-max px-4">

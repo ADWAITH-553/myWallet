@@ -81,10 +81,11 @@ router.get("/search",async(req,res)=>{
         $or:[{
             firstName:{
                 "$regex":filter
-            },
+            }},{
             lastName:{
                 "$regex":filter
             }
+            
         }]
     })
     res.json({
