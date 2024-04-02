@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-mongoose.connect("mongodb+srv://adwaith553:dbrgtyuisdfgyh@cluster0.ulzcgsa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect("")
 
 const userSchema=mongoose.Schema({
     username:{
